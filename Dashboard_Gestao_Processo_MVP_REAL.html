@@ -80,7 +80,7 @@ var k=payload.kpis||{},d=payload.details||payload;
 setValue('kReceived',k.received);setValue('kValidated',k.validated);setValue('kAvgTime',k.avgTime);setValue('kAutomation',k.automation);setValue('kQueue',k.queue);setValue('kErrors',k.errors);setValue('kErp',k.erpSent);
 if($('dValidated'))$('dValidated').textContent=k.received?Math.round((k.validated||0)/k.received*100)+'% do total':'Sem pedidos';
 var range=payload.startDate&&payload.endDate?payload.startDate+' a '+payload.endDate:(payload.period||'Período selecionado');
-$('sourceLine').textContent='Fonte: Google Sheets • '+range+' • '+(payload.generatedAt?new Date(payload.generatedAt).toLocaleString('pt-BR'):'');$('footerSource').textContent='Google Sheets';
+$('sourceLine').textContent='Fonte: Google Sheets • '+range+' • '+(payload.generatedAt?new Date(payload.generatedAt).toLocaleString('pt-BR'):'');if($('footerSource'))$('footerSource').textContent='Google Sheets';
 var daily=listOf(d.daily),statusItems=listOf(d.statusBreakdown),conversionItems=listOf(d.conversion),procedureItems=listOf(d.procedureMatch),productivityItems=listOf(d.productivity),ageItems=listOf(d.ageBuckets);
 safeSection(function(){renderTimeline(daily.length?daily:fallbackDaily(payload,k))},$('timeline'),'Sem dados diários para o período');
 safeSection(function(){renderStatus(statusItems.length?statusItems:fallbackStatus(payload,k))},$('statusLegend'),'Sem status para o período');
